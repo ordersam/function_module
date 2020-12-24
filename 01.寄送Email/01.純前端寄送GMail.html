@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>純前端寄送GMail</title>
+	
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+	<script>
+		// 官網：https://www.smtpjs.com/
+		// 注意要把信箱 啟用 安全性較低的應用程式存取權限
+		function mail() {
+			Email.send({
+				// =========== 原始作法 ===========
+				//Host: "smtp.gmail.com",
+				//Username: "帳號@gmail.com",
+				//Password: "密碼",
+
+				// =========== 安全性作法1(官網做法) ===========
+				//SecureToken: "官網轉SecureToken-需要有服務網址",
+
+				// =========== 安全性作法2(把密碼利用elasticemail進行轉換) ===========
+				Host: "smtp.elasticemail.com",
+				Username: "帳號@gmail.com",
+				Password: "轉換後的密碼",
+				To: '寄給誰@gmail.com',
+				From: "帳號@gmail.com",
+				Subject: "前端寄信",
+				Body: "<h1>是在哈囉？</h1>", 
+			})
+				.then(
+					message => alert(message)
+				);
+		}
+	</script>
+</head>
+<body onload="mail();">
+	<h2>純前端寄送GMail</h2>
+</body>
+</html>
